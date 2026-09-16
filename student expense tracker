@@ -1,0 +1,151 @@
+import java.util.*;
+
+// Expense Tracker project
+public class Main {
+
+	static final int EXIT = 6;
+
+    // class to hold one expense
+    static class Expense {
+        String name;
+        double amt;
+        String category;
+
+        Expense(String name, double amt, String category) {
+            this.name = name;
+            this.amt = amt;
+            this.category = category;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Expense> list = new ArrayList<>();
+
+        int ch = 0;
+        while (ch != EXIT) {
+            printMenu();
+
+            if (sc.hasNextInt()) {
+                ch = sc.nextInt();
+            } else {
+                System.out.println("please enter a number.");
+                sc.next();
+                continue;
+            }
+            sc.nextLine();
+
+            switch (ch) {
+                case 1:
+                    System.out.print("Name: ");
+                    String eName = sc.nextLine();
+
+                    double cost = -1;
+                    while (cost <= 0) {
+                        System.out.print("Amount: ");
+                        if (sc.hasNextDouble()) {
+                            cost = sc.nextDouble();
+                            sc.nextLine();
+                            if (cost <= 0)
+                                System.out.println("Amount must be positive.");
+                        } else {
+                            System.out.println("that is not a valid amount.");
+                            sc.next();
+                        }
+                    }
+
+                    System.out.print("Category: ");
+                    String catg = sc.nextLine();
+
+                    list.add(new Expense(eName, cost, catg));
+                    System.out.println("Expense added.");
+                    break;
+
+                case 2:
+                    if (list.size() == 0) {
+                        System.out.println("there are no expenses.");
+                        break;
+                    }
+                    for (int i = 0; i < list.size(); i++) {
+                        Expense e = list.get(i);
+                        System.out.println((i + 1) + ". " + e.name + " - Rs. " + e.amt + " - " + e.category);
+                    }
+                    break;
+
+                case 3:
+                    double tot = 0;
+                    for (int i = 0; i < list.size(); i++) {
+                        tot = tot + list.get(i).amt;
+                    }
+                    System.out.println("Total amount: Rs. " + tot);
+                    break;
+
+                case 4:
+                    if (list.size() == 0) {
+                        System.out.println("There are no expenses.");
+                        break;
+                    }
+
+                    // group by category, doing it manually with 2 arraylists
+                    ArrayList<String> catNamesList = new ArrayList<>();
+                    ArrayList<Double> sums = new ArrayList<>();
+                    for (int i = 0; i < list.size(); i++) {
+                        Expense e = list.get(i);
+                        int pos = -1;
+                        for (int j = 0; j < catNamesList.size(); j++) {
+                            if (catNamesList.get(j).equals(e.category)) {
+                                pos = j;
+                                break;
+                            }
+                        }
+                        if (pos == -1) {
+                            catNamesList.add(e.category);
+                            sums.add(e.amt);
+                        } else {
+                            sums.set(pos, sums.get(pos) + e.amt);
+                        }
+                    }
+                    for (int i = 0; i < catNamesList.size(); i++) {
+                        System.out.println(catNamesList.get(i) + " = Rs. " + sums.get(i));
+                    }
+                    break;
+
+                case 5:
+                    if (list.size() == 0) {
+                        System.out.println("Nothing to delete.");
+                        break;
+                    }
+                    System.out.print("Enter expense number: ");
+                    int n = sc.nextInt();
+                    sc.nextLine();
+                    if (n < 1 || n > list.size()) {
+                        System.out.println("Invalid number.");
+                        break;
+                    }
+                    list.remove(n - 1);
+                    System.out.println("expense deleted.");
+                    break;
+
+                case 6:
+                    System.out.println("Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("Please enter a valid choice.");
+            }
+        }
+
+        sc.close();
+    }
+
+    static void printMenu() {
+        System.out.println("\n--- Expense Tracker ---");
+        System.out.println("1. Add expense");
+        System.out.println("2. View expenses");
+        System.out.println("3. Show total");
+        System.out.println("4. Category summary");
+        System.out.println("5. Delete expense");
+        System.out.println("6. Exit");
+        System.out.print("Enter your choice: ");
+    }
+}
