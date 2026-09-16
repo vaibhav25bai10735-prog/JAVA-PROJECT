@@ -1,0 +1,333 @@
+# PROJECT REPORT
+
+## Student Expense Tracker
+
+### 1. Introduction
+
+Managing small daily expenses is something students usually do without keeping a proper record. Because of this, it is easy to lose track of where the money was spent. The **Student Expense Tracker** is a small Java project made to solve this simple problem.
+
+The program works through the command line and gives the user a few options to manage expenses. A user can add an expense, view the saved expenses, check the total amount spent, see spending category-wise, and delete an expense.
+
+The main idea behind this project was to take a common real-life problem and solve it using basic Java programming concepts.
+
+---
+
+## 2. Problem Statement
+
+Students make many small payments during the day, such as food, travel, shopping, stationery, and other personal expenses. When these expenses are not recorded, it becomes difficult to know the total amount spent.
+
+The aim of this project is to create a simple application that allows students to record and check their expenses in one place.
+
+---
+
+## 3. Objectives
+
+The main objectives of the project are:
+
+* To record daily expenses.
+* To display all recorded expenses.
+* To calculate the total amount spent.
+* To group expenses according to categories.
+* To allow the user to remove an incorrect expense.
+* To practice Java programming through a real-world example.
+
+---
+
+## 4. Scope of the Project
+
+The current version is mainly designed for individual students. It is a command-line application, so it does not require a complicated user interface.
+
+The project can be used for keeping a basic record of daily spending. It can also be extended later with features such as file storage, monthly budgets, login, search, and graphs.
+
+---
+
+## 5. Target Users
+
+The main users of this project are:
+
+* College students
+* School students
+* Beginners learning Java
+* Anyone who wants a simple expense record
+
+---
+
+## 6. Functional Requirements
+
+### 6.1 Add Expense
+
+The user can enter the name of an expense, its amount, and its category. The information is then added to the expense list.
+
+### 6.2 View Expenses
+
+The user can view all the expenses that have been entered during the current program session.
+
+### 6.3 Calculate Total Expense
+
+The program adds all the entered amounts and displays the total amount spent.
+
+### 6.4 Category Summary
+
+The program groups expenses by category and shows the total amount spent in each category.
+
+### 6.5 Delete Expense
+
+The user can select an expense number and remove it from the list.
+
+### 6.6 Exit
+
+The user can exit the program using the Exit option.
+
+---
+
+## 7. Non-Functional Requirements
+
+* **Usability:** The menu should be simple and easy to understand.
+* **Performance:** The program should respond quickly for normal student-level data.
+* **Reliability:** The program should handle invalid expense numbers without crashing.
+* **Maintainability:** The code should be divided into separate methods so it is easier to understand and modify.
+* **Resource Usage:** The application does not require high memory or processing power.
+
+---
+
+## 8. Technologies Used
+
+| Technology   | Purpose                      |
+| ------------ | ---------------------------- |
+| Java         | Main programming language    |
+| ArrayList    | Store expense details        |
+| HashMap      | Create category-wise summary |
+| Scanner      | Take input from the user     |
+| Command Line | User interface               |
+
+---
+
+## 9. System Workflow
+
+The basic workflow of the application is:
+
+```text
+Start
+  |
+  v
+Display Main Menu
+  |
+  v
+Select an Option
+  |
+  +----> Add Expense ----> Store Expense
+  |
+  +----> View Expenses ----> Display Expenses
+  |
+  +----> Total Expense ----> Calculate Total
+  |
+  +----> Category Summary ----> Group Categories
+  |
+  +----> Delete Expense ----> Remove Expense
+  |
+  +----> Exit
+             |
+             v
+            End
+```
+
+---
+
+## 10. Basic Architecture
+
+The project follows a simple structure:
+
+```text
+User
+  |
+  v
+Main Program
+  |
+  +--> Input Handling
+  |
+  +--> Expense Storage
+  |
+  +--> Expense Calculation
+  |
+  +--> Category Summary
+  |
+  +--> Delete Operation
+```
+
+The `Main` class controls the program. Different methods are used for different operations such as adding, viewing, calculating, summarizing, and deleting expenses.
+
+---
+
+## 11. Data Storage
+
+The current version stores the expense information in memory using Java collections.
+
+Three `ArrayList` objects are used:
+
+* One for expense names
+* One for expense amounts
+* One for expense categories
+
+A `HashMap` is used when creating the category-wise summary.
+
+Since the current version does not use a database or file, the data is lost when the program is closed.
+
+---
+
+## 12. Important Java Concepts Used
+
+### ArrayList
+
+`ArrayList` is used to store multiple expense names, amounts, and categories. It allows expenses to be added and removed easily.
+
+### HashMap
+
+`HashMap` is used for the category summary. It stores a category along with the total amount spent in that category.
+
+### Methods
+
+The program uses separate methods such as `addExpense()`, `viewExpenses()`, `totalExpense()`, `categorySummary()`, and `deleteExpense()`.
+
+### Switch-Case
+
+A switch-case statement is used to handle the user's menu choice.
+
+### Loops
+
+Loops are used to go through the list of expenses and calculate totals.
+
+---
+
+## 13. Sample Program Output
+
+```text
+===== STUDENT EXPENSE TRACKER =====
+1. Add Expense
+2. View Expenses
+3. Total Expense
+4. Category Summary
+5. Delete Expense
+6. Exit
+
+Enter choice: 1
+
+Enter expense name: Lunch
+Enter amount: ₹150
+Enter category: Food
+
+Expense added successfully!
+```
+
+After adding multiple expenses:
+
+```text
+----- EXPENSES -----
+
+1. Lunch - ₹150.00 - Food
+2. Bus - ₹50.00 - Travel
+3. Notebook - ₹100.00 - Education
+
+Total Expense: ₹300.00
+```
+
+Category summary:
+
+```text
+----- CATEGORY SUMMARY -----
+
+Food : ₹150.00
+Travel : ₹50.00
+Education : ₹100.00
+```
+
+---
+
+## 14. Testing
+
+Some basic test cases were considered while developing the program.
+
+| Test Case                | Expected Result                         |
+| ------------------------ | --------------------------------------- |
+| Add a valid expense      | Expense should be added                 |
+| View with no expenses    | "No expenses found" should be displayed |
+| Calculate total          | Correct total should be displayed       |
+| Category summary         | Category-wise total should be displayed |
+| Delete a valid expense   | Selected expense should be removed      |
+| Delete an invalid number | Error message should be displayed       |
+| Exit option              | Program should close                    |
+
+The program was checked using different expense names, amounts, and categories to make sure the main operations work correctly.
+
+---
+
+## 15. Challenges Faced
+
+One of the main challenges was keeping the expense name, amount, and category connected correctly while using separate lists.
+
+Another issue was handling user input because the program uses both `nextInt()` and `nextLine()`. The input buffer needs to be handled properly after reading numbers.
+
+Creating the category summary was also a useful part of the project because it required using a `HashMap` and adding amounts for the same category.
+
+---
+
+## 16. Learning Outcomes
+
+While working on this project, I learned how basic Java concepts can be used to create a useful application.
+
+Some important things learned were:
+
+* Using ArrayList to store data.
+* Using HashMap for grouped data.
+* Creating and calling methods.
+* Using loops and conditions.
+* Taking input using Scanner.
+* Designing a menu-driven program.
+* Testing different user inputs.
+* Solving a small real-world problem using programming.
+
+---
+
+## 17. Limitations
+
+The current version has some limitations:
+
+* Data is not permanently saved.
+* It does not have a graphical interface.
+* There is no login system.
+* Expenses cannot currently be edited.
+* There is no monthly budget feature.
+* There are no graphical charts.
+
+These limitations can be addressed in future versions.
+
+---
+
+## 18. Future Enhancements
+
+The project can be improved by adding:
+
+1. File or database storage so expenses are not lost after closing the program.
+2. Monthly and weekly expense tracking.
+3. A budget system with spending warnings.
+4. Search and filter options.
+5. Edit expense functionality.
+6. Graphs and charts for better analysis.
+7. A graphical user interface.
+8. User login and separate expense records.
+
+---
+
+## 19. Conclusion
+
+The Student Expense Tracker is a simple project, but it demonstrates how programming can be used to solve an everyday problem. The application provides the basic functions needed to record and understand expenses.
+
+The project also helped in understanding important Java concepts such as ArrayList, HashMap, methods, loops, conditions, and user input. Although the current version is basic, it provides a good starting point for developing a more complete expense management application in the future.
+
+---
+
+## 20. References
+
+* Java documentation and basic Java programming concepts.
+* Java Collections Framework concepts.
+* Course notes and classroom material.
+* Oracle Java documentation.
